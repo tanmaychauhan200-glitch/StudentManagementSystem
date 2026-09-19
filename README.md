@@ -28,16 +28,18 @@ No external libraries are required.
 
 ## How to Run
 
-Open the terminal in the project folder and run:
+1. Open the project folder in VS Code.
+2. Open the terminal.
+3. Run the following command:
 
 python main.py
 
 ## Project Files
 
-- main.py - Main program
-- student.py - Student class
-- student_manager.py - Manages students
-- README.md - Project information
+- `main.py` - Main program
+- `student.py` - Student class
+- `student_manager.py` - Manages students
+- `README.md` - Project information
 
 ## Author
 

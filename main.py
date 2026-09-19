@@ -1,41 +1,89 @@
 from student import Student
+from student_manager import StudentManager
 
-students = []
-
+manager = StudentManager()
+students = manager.students
 while True:
-    print("\n1.Add  2.View  3.Search  4.Marks  5.Delete  6.Exit")
-    ch = input("Choice: ")
+    print("\n" + "=" * 45)
+    print("       STUDENT MANAGEMENT SYSTEM")
+    print("=" * 45)
+    print("1. Add Student")
+    print("2. View Students")
+    print("3. Search Student")
+    print("4. Add Marks")
+    print("5. Delete Student")
+    print("6. Exit")
+    print("=" * 45)
 
-    if ch == "1":
-        id = input("ID: ")
-        name = input("Name: ")
-        branch = input("Branch: ")
-        students.append(Student(id, name, branch))
+    choice = input("Enter your choice: ")
 
-    elif ch == "2":
-        for s in students:
-            s.show()
+    if choice == "1":
+        print("\n--- Add New Student ---")
+        id = input("Enter Student ID: ")
+        name = input("Enter Student Name: ")
+        branch = input("Enter Branch: ")
 
-    elif ch == "3":
-        id = input("ID: ")
+        manager.add_student(Student(id, name, branch))
+        print("Student added successfully!")
+
+    elif choice == "2":
+      print("\n--- Student Details ---")
+
+      if len(students) == 0:
+        print("No students found.")
+      else:
+         for s in students:
+            print("ID:", s.id)
+            print("Name:", s.name)
+            print("Branch:", s.branch)
+            print("Marks:", s.marks)
+    
+
+    elif choice == "3":
+        print("\n--- Search Student ---")
+        id = input("Enter Student ID: ")
+
+        found = False
+
         for s in students:
             if s.id == id:
                 s.show()
+                found = True
 
-    elif ch == "4":
-        id = input("ID: ")
+        if not found:
+            print("Student not found.")
+
+    elif choice == "4":
+        print("\n--- Add Marks ---")
+        id = input("Enter Student ID: ")
+
         for s in students:
             if s.id == id:
-                subject = input("Subject: ")
-                marks = input("Marks: ")
+                subject = input("Enter Subject: ")
+                marks = input("Enter Marks: ")
                 s.marks[subject] = marks
+                manager.save()
+                print("Marks added successfully!")
+                break
+        else:
+            print("Student not found.")
 
-    elif ch == "5":
-        id = input("ID: ")
+    elif choice == "5":
+        print("\n--- Delete Student ---")
+        id = input("Enter Student ID: ")
+
+        old_count = len(students)
         students = [s for s in students if s.id != id]
 
-    elif ch == "6":
+        if len(students) < old_count:
+            print("Student deleted successfully.")
+        else:
+            print("Student not found.")
+
+    elif choice == "6":
+        print("\nThank you for using Student Management System!")
+        print("Goodbye!")
         break
 
     else:
-        print("Invalid choice")
+        print("\nInvalid choice. Please enter a number from 1 to 6.")
