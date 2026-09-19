@@ -28,7 +28,7 @@ No external libraries are required.
 
 ## How to Run
 
-1. Open the project folder in VS Code.
+1. Open the project folder 
 2. Open the terminal.
 3. Run the following command:
 
